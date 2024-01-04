@@ -49,15 +49,26 @@ function mostrarGenero() {
     const generoChoose = genero.toLowerCase();
     //Vemos si hay algunas de las canciones con ese genero, y las mostramos.
     const cancionesGenero = catalogoMusical.filter(song => song.genero === generoChoose)
-
+    
     if (cancionesGenero.length != 0) {
         const listaNombres = []
         cancionesGenero.forEach((song) => listaNombres.push(song.nombreCancion))
         console.log(`Estos son los nombres de las canciones con dicho genero: ${listaNombres}`)
-      } else {
+    } else {
         console.log('No hemos podido encontrar cancionees con ese genero.')
-      }
+    }
 }
+
+//Calcular promedio de duración de todas las canciones
+    //Metemos en una lsita todos los valores de los tiempos que hay
+    const duraciones = []
+    
+    //Recorremos el catalogo añadiendo los tiempos ala lista
+    function calcularPromedio() {
+        catalogoMusical.forEach((song) => {duraciones.push(song.duracion)})
+        const sumaTotal = duraciones.reduce((acumulador, numero) => acumulador + numero, 0) 
+        return console.log(`El tiempo total del Catálogo es de: ${parseInt(sumaTotal)}`)
+    }
 
 
 //Código para controlar el uso de del Catálogo
@@ -72,27 +83,30 @@ function accionUser() {
     return preguntaUser
 }
 
+
 function menu() {
-    let control = true
-    switch (accionUser()) {
-        case 1:
-            agregarCancion()
-            break
-        case 2:
-            mostrarCatalogo()
-            break
-        case 3:
-            mostrarGenero()
-            break
-        case 4:
-            calcularPromedio()
-            break
-        case 5:
-            break
-        default:
-            console.log('Por favor, introduce un valor válido')
-            menu()
-    }; console.log('Escribe menu() para ver las opciones.')
+    while (true) {
+        switch (accionUser()) {
+            case 1:
+                agregarCancion()
+                break
+            case 2:
+                mostrarCatalogo()
+                break
+            case 3:
+                mostrarGenero()
+                break
+            case 4:
+                calcularPromedio()
+                break
+            case 5:
+                console.log('Escribe menu() para ver las opciones.')
+                return
+            default:
+                console.log('Por favor, introduce un valor válido')
+                menu()
+        }
+    }
 }
 
 console.log(menu())
