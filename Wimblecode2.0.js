@@ -29,8 +29,8 @@ function chosePlayer() {
 //Creamos el marcador
 let marcador = [
     ['Player', 'P','R','G'],
-    ['Player 1', 0  , 3, 0],
-    ['Player 2', 0  , 3, 0]
+    ['Player 1', 0  , 0, 0],
+    ['Player 2', 0  , 0, 0]
 ]
 
 //Creamos el código necesario para controlar los puntos
